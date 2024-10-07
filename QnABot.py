@@ -1,8 +1,8 @@
-from langchain_community.llms import CTransformers
-from langchain.chains import RetrievalQA
-from langchain.prompts import PromptTemplate
-from langchain_community.embeddings import GPT4AllEmbeddings
-from langchain_community.vectorstores import FAISS
+from langchain_community.llms import CTransformers #dung de load mo hinh LLM
+from langchain.chains import RetrievalQA #tao chuoi truy xuat thong tin tu vector db de sinh ra cau tra loi
+from langchain.prompts import PromptTemplate #dinh nghia template cho prompt input va output
+from langchain_community.embeddings import GPT4AllEmbeddings 
+from langchain_community.vectorstores import FAISS #truy van vector db
 
 
 #Cau hinh
@@ -10,7 +10,7 @@ model_file = "models/vinallama-7b-chat.Q5_0.gguf"
 vector_db_path = "vectorstores/db_faiss"
 
 #Load LLM
-def load_llm(model_file):
+def load_llm(model_file): #tai model LLM tu file
     llm = CTransformers(
         model = model_file,
         model_type = "llama",
@@ -26,7 +26,7 @@ def create_prompt(template):
     prompt = PromptTemplate(template = template, input_variables = ["context", "question"])
     return prompt
 
-def create_qa_chain(prompt, llm, db):
+def create_qa_chain(prompt, llm, db): #tao chuoi truy xuat QA
     llm_chain = RetrievalQA.from_chain_type(
         llm = llm,
         chain_type = "stuff",
@@ -58,7 +58,7 @@ prompt = create_prompt(template)
 llm_chain = create_qa_chain(prompt, llm, db)
 
 #Chay chain:
-question = "Có mấy loại data type?"
+question = "Các loại data types"
 response = llm_chain.invoke({"query": question})
 print(response)
 

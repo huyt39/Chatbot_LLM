@@ -1,7 +1,7 @@
-from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
-from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import GPT4AllEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter  #chia van ban thanh doan nho
+from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader #load van ban pdf va thu muc
+from langchain_community.vectorstores import FAISS #csdl vector de luu tru va truy van nhung (embedding) van ban
+from langchain_community.embeddings import GPT4AllEmbeddings #tao nhung (embeddings) tu van ban
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="langchain_community.embeddings")
 
@@ -25,8 +25,8 @@ Nguyễn Tất Thành sinh ra trong bối cảnh nước mất nhà tan và lớ
     #Chia nho van ban:
     text_splitter = CharacterTextSplitter(
         separator = "\n",
-        chunk_size = 500,
-        chunk_overlap = 50,
+        chunk_size = 500, #kich thuoc 500 ky tu
+        chunk_overlap = 50, 
         length_function = len
     )
 
